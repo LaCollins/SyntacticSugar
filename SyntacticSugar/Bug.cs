@@ -12,51 +12,38 @@ namespace SyntacticSugar
             line of code in C#. Readonly properties can be set in the
             class' constructors, but not by external code.
         */
-        public string Name { get; } = "";
-        public string Species { get; } = "";
-        public List<string> Predators { get; } = new List<string>();
-        public List<string> Prey { get; } = new List<string>();
+        public string Name { get; }
+        public string Species { get; }
+        public List<string> Predators { get; }
+        public List<string> Prey { get; }
 
         // Convert this readonly property to an expression member
-        public string FormalName
-        {
-            get
-            {
-                return $"{this.Name} the {this.Species}";
-            }
-        }
+        public string FormalName => $"{Name} the {Species}";
 
         // Class constructor
         public Bug(string name, string species, List<string> predators, List<string> prey)
         {
-            this.Name = name;
-            this.Species = species;
-            this.Predators = predators;
-            this.Prey = prey;
+            Name = name;
+            Species = species;
+            Predators = predators;
+            Prey = prey;
         }
 
         // Convert this method to an expression member
-        public string PreyList()
-        {
-            var commaDelimitedPrey = string.Join(",", this.Prey);
-            return commaDelimitedPrey;
-        }
+        public string PreyList() => string.Join(",", Prey);
 
         // Convert this method to an expression member
-        public string PredatorList()
-        {
-            var commaDelimitedPredators = string.Join(",", this.Predators);
-            return commaDelimitedPredators;
-        }
+        public string PredatorList() => string.Join(",", this.Predators);
 
         // Convert this to expression method
         public string Eat(string food)
         {
-            if (this.Prey.Contains(food))
+            if (Prey.Contains(food))
             {
                 return $"{this.Name} ate the {food}.";
             }
             else
+
             {
                 return $"{this.Name} is still hungry.";
             }
