@@ -36,17 +36,8 @@ namespace SyntacticSugar
         public string PredatorList() => string.Join(",", this.Predators);
 
         // Convert this to expression method
-        public string Eat(string food)
-        {
-            if (Prey.Contains(food))
-            {
-                return $"{this.Name} ate the {food}.";
-            }
-            else
 
-            {
-                return $"{this.Name} is still hungry.";
-            }
-        }
+        public string Eat(string food) => Prey.Contains(food) ? $"{Name} ate the {food}." : $"{this.Name} is still hungry.";
+
     }
 }
